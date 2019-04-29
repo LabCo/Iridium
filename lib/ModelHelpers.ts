@@ -1,9 +1,9 @@
 ﻿import * as MongoDB from "mongodb";
 import {Model} from "./Model";
+import {InstanceInternals} from "./InstanceInterface";
 import * as Skmatc from "skmatc";
 import {Omnom} from "./utils/Omnom";
 import * as _ from "lodash";
-import * as Bluebird from "bluebird";
 
 /**
  * A number of helper methods used commonly within Iridium, they provide a means to transform,
@@ -11,7 +11,7 @@ import * as Bluebird from "bluebird";
  * help to improve testability and reduce code duplication (mouse abuse) throughout the codebase.
  * @internal
  */
-export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
+export class ModelHelpers<TDocument, TInstance> {
     constructor(public model: Model<TDocument, TInstance>) {
         this._validator = Skmatc.scope(model.schema);
         model.validators.forEach(validator => this._validator.register(validator));
@@ -46,24 +46,34 @@ export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
      * @returns {any} The result of having transformed the document.
      * @remarks This is only really called from insert/create - as 
      */
-    transformToDB<T>(document: T, options: TransformOptions = { properties: true }): T {
+    transformToDB<T>(document: T, options: TransformOptions = { properties: true, renames: true }): T {
         if(options.document && this.model.transforms.$document)
             document = <any>this.model.transforms.$document.toDB(document, "$document", this.model);
         
-        if(!options.properties) return document;
-        
-        for (let property in this.model.transforms) {
-            if (property === "$document") continue;
+        if(options.properties) {
+            for (let property in this.model.transforms) {
+                if (property === "$document") continue;
 
-            const transform = this.model.transforms[property];
-            if (!transform) continue;
+                const transform = this.model.transforms[property];
+                if (!transform) continue;
 
-            if(document.hasOwnProperty(property)) {
-                (<T & { [prop: string]: any }>document)[property]
-                    = transform.toDB((<T & { [prop: string]: any }>document)[property], property, this.model);
+                if(document.hasOwnProperty(property)) {
+                    (<T & { [prop: string]: any }>document)[property]
+                        = transform.toDB((<T & { [prop: string]: any }>document)[property], property, this.model);
+                }
             }
         }
-            
+
+        if(options.renames) {
+            for (let property in this.model.renames) {
+                const dbField = this.model.renames[property];
+                if ((<T & Object>document).hasOwnProperty(property)) {
+                    (<T & { [prop: string]: any }>document)[dbField] = (<T & { [prop: string]: any }>document)[property]
+                    delete (<T & { [prop: string]: any }>document)[property]
+                }
+            }
+        }
+
         return document;
     }
     
@@ -76,21 +86,31 @@ export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
      * document level transforms, as property level transforms are applied in
      * their relevant instance setters.
      */
-    transformFromDB(document: TDocument, options: TransformOptions = { properties: true }): TDocument {
+    transformFromDB(document: TDocument, options: TransformOptions = { properties: true, renames: true }): TDocument {
         if(options.document && this.model.transforms.$document)
             document = this.model.transforms.$document.fromDB(document, "$document", this.model);
-        
-        if(!options.properties) return document;
-        
-        for (let property in this.model.transforms) {
-            if(property === "$document") continue;
 
-            const transform = this.model.transforms[property];
-            if (!transform) continue;
+        if(options.renames) {
+            for (let property in this.model.renames) {
+                const dbField = this.model.renames[property];
+                if ((<TDocument & Object>document).hasOwnProperty(dbField)) {
+                    (<TDocument & { [prop: string]: any }>document)[property] = (<TDocument & { [prop: string]: any }>document)[dbField]
+                    delete (<TDocument & { [prop: string]: any }>document)[dbField]
+                }
+            }
+        }
+        
+        if(options.properties) {
+            for (let property in this.model.transforms) {
+                if(property === "$document") continue;
 
-            if(document.hasOwnProperty(property)) {
-                (<TDocument & { [prop: string]: any }>document)[property]
-                    = transform.fromDB((<TDocument & { [prop: string]: any }>document)[property], property, this.model);
+                const transform = this.model.transforms[property];
+                if (!transform) continue;
+
+                if(document.hasOwnProperty(property)) {
+                    (<TDocument & { [prop: string]: any }>document)[property]
+                        = transform.fromDB((<TDocument & { [prop: string]: any }>document)[property], property, this.model);
+                }
             }
         }
             
@@ -103,10 +123,11 @@ export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
      * @param document The document to be converted
      * @param processProperties Whether or not to process properties in addition
      * document level transforms.
+     * @param clone Whether or not to clone the document before performing any transforms (performance boost)
      * @returns {any} A new document cloned from the original and transformed
      */
-    convertToDB<T>(document: T, options: TransformOptions = { properties: true }): T {
-        let doc: T = this.cloneDocument(document);
+    convertToDB<T>(document: T, options: TransformOptions = { properties: true, renames: true }, clone: boolean = true): T {
+        let doc: T = clone ? this.cloneDocument(document) : document;
         return this.transformToDB(doc, options);
     }
 
@@ -128,7 +149,7 @@ export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
      * @param {any} The document you wish to clone deeply.
      */
     cloneDocument<T>(original: T): T {
-        return _.cloneDeepWith<T, any>(original, (value) => {
+        return _.cloneDeepWith<T>(original, (value) => {
            if(Buffer.isBuffer(value)) {
                return value;
            }
@@ -153,9 +174,42 @@ export class ModelHelpers<TDocument extends { _id?: any }, TInstance> {
     cloneConditions<T>(original: T): T {
         return this.cloneDocument(original);
     }
+
+    readInstanceField<K extends keyof TInstance, V extends TInstance[K]>(instance: InstanceInternals<TDocument, TInstance>, field: K): V {
+        if (instance._fieldCache.hasOwnProperty(field))
+            return instance._fieldCache[field]
+
+        const transform = instance._model.transforms[field]
+        if (!transform) return (<any>instance._modified)[field]
+        
+        return instance._fieldCache[field] = transform.fromDB((<any>instance._modified)[field], field, instance._model)
+    }
+
+    writeInstanceField<K extends keyof TInstance, V extends TInstance[K]>(instance: InstanceInternals<TDocument, TInstance>, field: K, value: V): void {
+        if (instance._fieldCache.hasOwnProperty(field)) {
+            instance._fieldCache[field] = value
+            return
+        }
+
+        (<any>instance._modified)[field] = value
+    }
+
+    applyCachedFieldChanges(instance: InstanceInternals<TDocument, TInstance>): TDocument {
+        _.each(instance._fieldCache, (value, field: keyof TDocument) => {
+            const transform = instance._model.transforms[field]
+            if (transform)
+                instance._modified[field] = transform.toDB(value, field, instance._model)
+            else
+                instance._modified[field] = value
+        })
+
+        instance._fieldCache = {}
+        return instance._modified
+    }
 }
 
 export interface TransformOptions {
     properties?: boolean;
+    renames?: boolean;
     document?: boolean;
 }

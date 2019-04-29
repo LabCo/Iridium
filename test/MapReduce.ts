@@ -1,7 +1,6 @@
 import * as Iridium from "../iridium";
 import * as MongoDB from "mongodb";
 import { Cursor } from "../lib/Cursor";
-import * as Promise from "bluebird";
 import * as _ from "lodash";
 import * as chai from "chai";
 
@@ -65,6 +64,7 @@ describe("Model", () => {
     let core = new Iridium.Core({ database: "test" });
 
     before(() => core.connect());
+    after(() => core.close());
 
     describe("mapReduce()", () => {
         let model = new Iridium.Model<TestDocument, Test>(core, Test);
@@ -77,6 +77,7 @@ describe("Model", () => {
                 { cust_id: "B212", amount: 200, status: "A" }
             ]));
         });
+        afterEach(() => core.close());
 
         it("should correctly map and reduce with model and decorator", () => {
             let reducedModel = new Iridium.Model<Iridium.MapReducedDocument<string, number>, DecoratedMapReducedInstance>(core, DecoratedMapReducedInstance);

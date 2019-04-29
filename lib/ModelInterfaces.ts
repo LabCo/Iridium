@@ -10,6 +10,13 @@
  *
  * @internal
  */
-export interface ModelSpecificInstanceConstructor<TDocument extends { _id?: any }, TInstance> {
+export interface ModelSpecificInstanceConstructor<TDocument, TInstance> {
     new (doc: TDocument, isNew?: boolean, isPartial?: boolean): TInstance;
 }
+
+/**
+ * Objects which are to be inserted into the DB can either be in the TDocument
+ * format used by the DB already, or have a toDB() method which returns such a
+ * document for insertion.
+ */
+export type InsertionDocument<TDocument> = TDocument | { toDB(): TDocument }

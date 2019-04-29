@@ -3,7 +3,7 @@ import {Schema} from "./Schema";
 import {Model} from "./Model";
 import * as Index from "./Index";
 import {CacheDirector} from "./CacheDirector";
-import {Transforms} from "./Transforms";
+import {Transforms, RenameMap} from "./Transforms";
 import {Changes} from "./Changes";
 import {MapFunction, ReduceFunction, MapReduceFunctions} from "./MapReduce"
 
@@ -19,7 +19,7 @@ import {MapFunction, ReduceFunction, MapReduceFunctions} from "./MapReduce"
  * on the instance implementation, since prototype methods and variables become available to consumers of the
  * instance itself.
  */
-export interface InstanceImplementation<TDocument extends { _id ?: any }, TInstance> {
+export interface InstanceImplementation<TDocument, TInstance> {
     /**
      * A constructor which creates a new instance tied to the given model and representing the given document.
      * @param model The Iridium Model which this instance should be tied to, gives the instance access to the database collection and any other context it requires.
@@ -132,6 +132,13 @@ export interface InstanceImplementation<TDocument extends { _id ?: any }, TInsta
      * then back to ObjectIDs once they return to the database.
      */
     transforms?: Transforms;
+
+    /**
+     * The map of code field names to DB field names which will be used by Iridium to rename
+     * those fields should you wish to have differing field names within the DB to those represented
+     * in your code.
+     */
+    renames?: RenameMap;
 }
 
 export interface InstanceInternals<TDocument extends { _id ?: any }, TInstance> {
@@ -159,4 +166,30 @@ export interface InstanceInternals<TDocument extends { _id ?: any }, TInstance> 
      * The model that this instance belongs to
      */
     _model: Model<TDocument, TInstance>;
+
+    /**
+     * Used to provide post-transform object memoization on a per-field basis
+     * See #118 for design details
+     */
+    _fieldCache: FieldCache
+
+    /**
+     * Allows an instance implementation to define its own means of accessing
+     * properties. This is used to enable the memoization of transformed properties.
+     * @param field The name of the schema field whose value should be returned
+     */
+    _getField<K extends keyof TInstance, V extends TInstance[K]>(field: K): V;
+
+    /**
+     * Allows an instance implementation to control how it responds when new values
+     * are assigned to any of its fields. This is used to support memoization of
+     * transformed properties safely.
+     * @param field The name of the schema field whose value should be updated
+     * @param value The pre-toDB-transform value to be assigned to this field
+     */
+    _setField<K extends keyof TInstance, V extends TInstance[K]>(field: K, value: V): void;
+}
+
+export interface FieldCache {
+    [field: string]: any
 }

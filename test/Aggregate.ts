@@ -1,7 +1,6 @@
 import * as Iridium from "../iridium";
 import * as MongoDB from "mongodb";
 import {Cursor} from "../lib/Cursor";
-import * as Promise from "bluebird";
 import * as _ from "lodash";
 import * as chai from "chai";
 
@@ -28,6 +27,7 @@ describe("Model", () => {
     let core = new Iridium.Core({ database: "test" });
 
     before(() => core.connect());
+    after(() => core.close());
 
     describe("aggregate()", () => {
        let model = new Iridium.Model<TestDocument, Test>(core, Test);

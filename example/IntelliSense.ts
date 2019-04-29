@@ -1,5 +1,4 @@
 ﻿import * as Iridium from "../iridium";
-import Bluebird = require('bluebird');
 
 interface UserDoc {
     _id?: string;
@@ -13,7 +12,7 @@ interface UserDoc {
 
 @Iridium.Collection("users")
 @Iridium.Index({ email: 1 }, { unique: true })
-class User extends Iridium.Instance<UserDoc, User> implements UserDoc, Iridium.Hooks<UserDoc, User> {
+class User extends Iridium.Instance<UserDoc, User> implements UserDoc {
     @Iridium.ObjectID
     _id: string;
     @Iridium.Property(String)

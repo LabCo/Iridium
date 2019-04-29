@@ -4,6 +4,203 @@ For a human friendly description of what changed in each release, take a look
 at the [Releases](https://github.com/SierraSoftworks/Iridium/releases) page.
 
 
+## Version [8.0.0-alpha.14](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.14)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.14">tag: **v8.0.0-alpha.14**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.14
+```
+
+### Changes
+ - [5ebf611](https://github.com/SierraSoftworks/Iridium/commit/5ebf611) 8.0.0-alpha.14
+ - [3345371](https://github.com/SierraSoftworks/Iridium/commit/3345371) build: Update automated build files to improve their quality
+ - [7cede54](https://github.com/SierraSoftworks/Iridium/commit/7cede54) tweak: Make the new conditions interface compatible with the old interface for easier upgrades.
+ - [8485611](https://github.com/SierraSoftworks/Iridium/commit/8485611) Merge pull request #120 from CatGuardian/feature/8.0.0
+ - [b3c1db9](https://github.com/SierraSoftworks/Iridium/commit/b3c1db9) Updated iridium with a mistype of Conditions.
+ - [96e11aa](https://github.com/SierraSoftworks/Iridium/commit/96e11aa) Made code clean improvement and made plugins registered first.
+ - [7468c2e](https://github.com/SierraSoftworks/Iridium/commit/7468c2e) Updated comments for get validators() of Model.
+ - [e5ecdc3](https://github.com/SierraSoftworks/Iridium/commit/e5ecdc3) Changed it so that the plugin validators are loaded into each Model's validators.
+ - [eaf6c70](https://github.com/SierraSoftworks/Iridium/commit/eaf6c70) Addd Plugin validation support.
+ - [2cc6949](https://github.com/SierraSoftworks/Iridium/commit/2cc6949) Merge pull request #1 from SierraSoftworks/feature/8.0.0
+ - [830d2a4](https://github.com/SierraSoftworks/Iridium/commit/830d2a4) doc: Update documentation for v8.0.0-alpha.13
+
+## Version [8.0.0-alpha.13](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.13)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.13">tag: **v8.0.0-alpha.13**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.13
+```
+
+### Changes
+ - [1270216](https://github.com/SierraSoftworks/Iridium/commit/1270216) 8.0.0-alpha.13
+ - [808c2e1](https://github.com/SierraSoftworks/Iridium/commit/808c2e1) fix: Prevent a potential crash if Core.close() is called before Core.connect()
+ - [19a3436](https://github.com/SierraSoftworks/Iridium/commit/19a3436) chore: Update to the latest upstream libraries
+ - [c2fe092](https://github.com/SierraSoftworks/Iridium/commit/c2fe092) test: Force mocha to exit when tests are complete
+ - [efe1246](https://github.com/SierraSoftworks/Iridium/commit/efe1246) doc: Update the README file to reflect current best practices and features
+ - [8eef1ba](https://github.com/SierraSoftworks/Iridium/commit/8eef1ba) chore: Update package versions
+ - [b2a9c8c](https://github.com/SierraSoftworks/Iridium/commit/b2a9c8c) refactor: Move decorators into their own folder
+ - [705e7d9](https://github.com/SierraSoftworks/Iridium/commit/705e7d9) feat #118: Add intelligent memoization of transformed fields on Instances
+ - [94fdb8d](https://github.com/SierraSoftworks/Iridium/commit/94fdb8d) refactor: Move logic for field transformation into Instance #118
+ - [f432ce0](https://github.com/SierraSoftworks/Iridium/commit/f432ce0) doc: Update documentation
+ - [ed406bc](https://github.com/SierraSoftworks/Iridium/commit/ed406bc) doc: Updated changelog for 8.0.0-alpha.12
+
+## Version [8.0.0-alpha.12](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.12)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.12">tag: **v8.0.0-alpha.12**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.12
+```
+
+### Changes
+ - [b6023fb](https://github.com/SierraSoftworks/Iridium/commit/b6023fb) 8.0.0-alpha.12
+ - [3506c45](https://github.com/SierraSoftworks/Iridium/commit/3506c45) chore: Update to use MongoDB Client 3.0
+ - [e8d6ed6](https://github.com/SierraSoftworks/Iridium/commit/e8d6ed6) doc: Updated changelog
+
+## Version [8.0.0-alpha.11](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.11)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.11">tag: **v8.0.0-alpha.11**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.11
+```
+
+### Changes
+ - [34975b4](https://github.com/SierraSoftworks/Iridium/commit/34975b4) 8.0.0-alpha.11
+ - [ed797b1](https://github.com/SierraSoftworks/Iridium/commit/ed797b1) doc: Updated CONTRIBUTING.md doc to reflect current repo structure
+ - [a888ea5](https://github.com/SierraSoftworks/Iridium/commit/a888ea5) Merge pull request #115 from CatGuardian/feature/8.0.0
+ - [0edcc7c](https://github.com/SierraSoftworks/Iridium/commit/0edcc7c) Forgot to remove a temporary line of code in Core.ts.
+ - [28d11e5](https://github.com/SierraSoftworks/Iridium/commit/28d11e5) Added TODO's for documentation and restored Core.ts since the onConnect hook tests were actually performing a test and not just always passing.
+ - [f6f5224](https://github.com/SierraSoftworks/Iridium/commit/f6f5224) Fixing othe tests that have a similar flaw. And testing if this flaw extends to the onConnecting methods of core.
+ - [890aca1](https://github.com/SierraSoftworks/Iridium/commit/890aca1) Now that I have fixed the test, add the code to fix the onCreating hook not being called bug where the onCreating hook isn't called when creating a document from the Instance.save method.
+ - [86fb0a8](https://github.com/SierraSoftworks/Iridium/commit/86fb0a8) Update an onCreating hook test to see why it isn't failing when it is expected to fail.
+ - [2d26f3c](https://github.com/SierraSoftworks/Iridium/commit/2d26f3c) Checking if test actually works by forcing it to fail.
+ - [de8f1bd](https://github.com/SierraSoftworks/Iridium/commit/de8f1bd) Added support for the onCreating hook to be triggered when creating a new document through the Model.Save method.
+ - [ad04db2](https://github.com/SierraSoftworks/Iridium/commit/ad04db2) doc: Updated changelog
+
+## Version [8.0.0-alpha.10](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.10)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.10">tag: **v8.0.0-alpha.10**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.10
+```
+
+### Changes
+ - [de77be7](https://github.com/SierraSoftworks/Iridium/commit/de77be7) 8.0.0-alpha.10
+ - [fcd98c0](https://github.com/SierraSoftworks/Iridium/commit/fcd98c0) fix #108: Improve various edge cases with the rename implementation
+ - [00cf41e](https://github.com/SierraSoftworks/Iridium/commit/00cf41e) test: Use Bluebird as the Promise implementation for testing
+ - [9257908](https://github.com/SierraSoftworks/Iridium/commit/9257908) fix: Correct an issue with out of date yarn modules
+ - [0547340](https://github.com/SierraSoftworks/Iridium/commit/0547340) doc: Update changelog
+
+## Version [8.0.0-alpha.9](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.9)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.9">tag: **v8.0.0-alpha.9**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.9
+```
+
+### Changes
+ - [c16c90d](https://github.com/SierraSoftworks/Iridium/commit/c16c90d) 8.0.0-alpha.9
+ - [e5750bc](https://github.com/SierraSoftworks/Iridium/commit/e5750bc) chore: Update to support TypeScript 2.6
+ - [286cca5](https://github.com/SierraSoftworks/Iridium/commit/286cca5) doc: Update changelog
+
+## Version [8.0.0-alpha.8](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.8)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.8">tag: **v8.0.0-alpha.8**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.8
+```
+
+### Changes
+ - [a4dac5a](https://github.com/SierraSoftworks/Iridium/commit/a4dac5a) 8.0.0-alpha.8
+ - [583784d](https://github.com/SierraSoftworks/Iridium/commit/583784d) feat #108: Add support for renaming instance fields
+ - [c6e7b46](https://github.com/SierraSoftworks/Iridium/commit/c6e7b46) test #110: Add a test case for instance instantiation
+ - [a993042](https://github.com/SierraSoftworks/Iridium/commit/a993042) doc: Update changelog
+
+## Version [8.0.0-alpha.7](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.7)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.7">tag: **v8.0.0-alpha.7**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.7
+```
+
+### Changes
+ - [d22e7e8](https://github.com/SierraSoftworks/Iridium/commit/d22e7e8) 8.0.0-alpha.7
+ - [74e3d49](https://github.com/SierraSoftworks/Iridium/commit/74e3d49) feat #106: Fix bug in MongoDB client driver when passing aggregate options
+ - [90d632c](https://github.com/SierraSoftworks/Iridium/commit/90d632c) doc: Update changelog
+
+## Version [8.0.0-alpha.6](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.6)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.6">tag: **v8.0.0-alpha.6**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.6
+```
+
+### Changes
+ - [19a6ffa](https://github.com/SierraSoftworks/Iridium/commit/19a6ffa) 8.0.0-alpha.6
+ - [0146271](https://github.com/SierraSoftworks/Iridium/commit/0146271) feat #106: Add support for aggregate options
+ - [6173aac](https://github.com/SierraSoftworks/Iridium/commit/6173aac) doc: Update documentation
+
+## Version [8.0.0-alpha.5](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.5)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.5">tag: **v8.0.0-alpha.5**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.5
+```
+
+### Changes
+ - [991a480](https://github.com/SierraSoftworks/Iridium/commit/991a480) 8.0.0-alpha.5
+ - [20abc84](https://github.com/SierraSoftworks/Iridium/commit/20abc84) feat #103: Exposed numeric BSON type helpers
+ - [ede68d6](https://github.com/SierraSoftworks/Iridium/commit/ede68d6) test #96: Add a test case to attempt reproducing the URL issue
+
+## Version [8.0.0-alpha.4](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.4)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.4">tag: **v8.0.0-alpha.4**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.4
+```
+
+### Changes
+ - [c51d7e6](https://github.com/SierraSoftworks/Iridium/commit/c51d7e6) 8.0.0-alpha.4
+ - [3860b9a](https://github.com/SierraSoftworks/Iridium/commit/3860b9a) fix #95: Correct an issue with outdated dev-side dependencies causing the build to erroneously pass
+
+## Version [8.0.0-alpha.3](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.3)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.3">tag: **v8.0.0-alpha.3**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.3
+```
+
+### Changes
+ - [b43fca7](https://github.com/SierraSoftworks/Iridium/commit/b43fca7) 8.0.0-alpha.3
+ - [09613a0](https://github.com/SierraSoftworks/Iridium/commit/09613a0) refactor #95: Switch to native Promises instead of Bluebird
+ - [ba1c9fd](https://github.com/SierraSoftworks/Iridium/commit/ba1c9fd) test: Add tests to ensure that #91 doesn't get broken
+ - [35cf575](https://github.com/SierraSoftworks/Iridium/commit/35cf575) test: Add tests to attempt reproducing #88
+ - [332f409](https://github.com/SierraSoftworks/Iridium/commit/332f409) doc: Update CHANGELOG
+
+## Version [8.0.0-alpha.2](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.2)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.2">tag: **v8.0.0-alpha.2**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.2
+```
+
+### Changes
+ - [d38301e](https://github.com/SierraSoftworks/Iridium/commit/d38301e) 8.0.0-alpha.2
+ - [f8e3489](https://github.com/SierraSoftworks/Iridium/commit/f8e3489) fix #86: Update the cache interface to work correctly with TypeScript 2.4
+ - [1889b63](https://github.com/SierraSoftworks/Iridium/commit/1889b63) doc: Update changelog
+
+## Version [8.0.0-alpha.1](https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.1)
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v8.0.0-alpha.1">tag: **v8.0.0-alpha.1**</a>
+
+```sh
+npm install iridium@8.0.0-alpha.1
+```
+
+### Changes
+ - [8838831](https://github.com/SierraSoftworks/Iridium/commit/8838831) 8.0.0-alpha.1
+ - [4a05389](https://github.com/SierraSoftworks/Iridium/commit/4a05389) chore #86: Update to support TypeScript 2.4.1
+ - [343282b](https://github.com/SierraSoftworks/Iridium/commit/343282b) fix #83: Remove the default `[string]: any` index type on Instance
+ - [6cdcc7d](https://github.com/SierraSoftworks/Iridium/commit/6cdcc7d) doc: Update CHANGELOG
+
 ## Version [7.2.5](https://github.com/SierraSoftworks/Iridium/releases/tag/v7.2.5)
 <a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v7.2.5">tag: **v7.2.5**</a>
 
@@ -260,7 +457,7 @@ npm install iridium@7.0.0
 
 ## Version [7.0.0-alpha.17](https://github.com/SierraSoftworks/Iridium/releases/tag/v7.0.0-alpha.17)
 <a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v7.0.0-alpha.17">tag: **v7.0.0-alpha.17**</a>
-<a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/7.0.0-dev">branch: **7.0.0-dev**</a> <a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/7.0.0-dev">branch: **7.0.0-dev**</a>
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/7.0.0-dev">branch: **7.0.0-dev**</a>
 
 ```sh
 npm install iridium@7.0.0-alpha.17
@@ -1534,7 +1731,7 @@ npm install iridium@5.0.0-alpha.1
 
 ## Version [4.0.1](https://github.com/SierraSoftworks/Iridium/releases/tag/v4.0.1)
 <a style="border-radius: 2px; padding: 4px 8px; background: rgb(64, 120, 192); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/releases/tag/v4.0.1">tag: **v4.0.1**</a>
-<a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/v4">branch: **v4**</a> <a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/v4">branch: **v4**</a>
+<a style="border-radius: 2px; padding: 4px 8px; background: rgb(108, 198, 68); color: #fff;" href="https://github.com/SierraSoftworks/Iridium/tree/v4">branch: **v4**</a>
 
 ```sh
 npm install iridium@4.0.1

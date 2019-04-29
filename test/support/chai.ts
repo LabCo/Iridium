@@ -1,9 +1,14 @@
+import * as Bluebird from "bluebird";
 import * as chai from "chai";
 import * as chaiAsPromised from "chai-as-promised";
-import * as Bluebird from "bluebird";
 import * as sourceMapSupport from "source-map-support";
 
-Bluebird.longStackTraces();
+Bluebird.config({
+    longStackTraces: true
+})
+
+global.Promise = Bluebird;
+
 sourceMapSupport.install({
     handleUncaughtExceptions: false
 });
