@@ -61,7 +61,7 @@ class NotMapReducedInstance extends Iridium.Instance<Iridium.MapReducedDocument<
 }
 
 describe("Model", () => {
-    let core = new Iridium.Core({ database: "test" });
+    let core = new Iridium.Core('mongodb://localhost:27017/test');
 
     before(() => core.connect());
     after(() => core.close());

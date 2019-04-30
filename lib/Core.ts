@@ -34,39 +34,26 @@ export class Core {
      * @param {Iridium.IridiumConfiguration} config The config object defining the database to connect to
      * @constructs Core
      */
-    constructor(config: Configuration);
     /**
      * Creates a new Iridium Core instance connected to the specified MongoDB instance
      * @param {String} url The URL of the MongoDB instance to connect to
      * @param {Iridium.IridiumConfiguration} config The config object made available as settings
      * @constructs Core
      */
-    constructor(uri: string, config?: Configuration);
-    constructor(uri: string | Configuration, config?: Configuration) {
-        if (typeof uri === "string") {
-            this._url = uri;
-            this._config = config;
-
-            this._dbName = config && config.database || this.parseDbName(this.url)
-        } else if (uri) {
-            this._config = uri;
-            this._dbName = uri && uri.database || "";
-            if (!this._dbName) throw new Error("Expected the database name to be provided when initializing Iridium");
-        } else {
-            throw new Error("Expected either a URI or config object to be supplied when initializing Iridium");
-        }
+    constructor(uri: string, config?: MongoDB.MongoClientOptions) {
+        this._url = uri;
+        this._config = config;
+        this._dbName = this.parseDbName(this.url)
     }
 
-    private mongoConnectAsyc = (url: string, opts: MongoDB.MongoClientOptions) => new Promise<MongoDB.MongoClient>((resolve, reject) => {
-        MongoDB.MongoClient.connect(url, opts, (err, db) => {
-            if (err) return reject(err);
-            return resolve(db);
-        });
-    });
+    private mongoConnectAsyc = (uri: string, opts: MongoDB.MongoClientOptions) => {
+        const client = new MongoDB.MongoClient(uri, opts);
+        return client.connect()
+    };
 
     private _plugins: Plugin[] = [];
     private _url: string;
-    private _config: Configuration|undefined;
+    private _config: MongoDB.MongoClientOptions|undefined;
     private _connection: MongoDB.MongoClient|undefined;
     private _cache: Cache = new NoOpCache();
     private _dbName: string;
@@ -111,7 +98,7 @@ export class Core {
      * Gets the database that this Iridium core is connected to
      */
     get db(): MongoDB.Db {
-        return this.connection.db(this.dbName);
+        return this.connection.db();
     }
 
     /**
@@ -156,7 +143,7 @@ export class Core {
         return Nodeify(Promise.resolve().then(() => {
             if (this._connection) return this._connection;
             if (this._connectPromise) return this._connectPromise;
-            return this._connectPromise = this.mongoConnectAsyc(this.url, this._config && this._config.options || {});
+            return this._connectPromise = this.mongoConnectAsyc(this.url, this._config || {});
         }).then((db: MongoDB.MongoClient) => {
             return this.onConnecting(db);
         }).then(db => {

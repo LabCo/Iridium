@@ -48,7 +48,7 @@ class Person extends Iridium.Instance<Document, Person> {
 }
 
 describe("Validation", () => {
-    let core = new Iridium.Core({ database: "test" });
+    let core = new Iridium.Core('mongodb://localhost:27017/test');
     let model = new Iridium.Model<Document, Person>(core, Person);
 
     before(() => core.connect());

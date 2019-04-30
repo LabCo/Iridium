@@ -24,7 +24,7 @@ class Test extends Iridium.Instance<TestDocument, Test> implements TestDocument 
 }
 
 describe("Model", () => {
-    let core = new Iridium.Core({ database: "test" });
+    let core = new Iridium.Core( 'mongodb://localhost:27017/test' );
 
     before(() => core.connect());
     after(() => core.close());

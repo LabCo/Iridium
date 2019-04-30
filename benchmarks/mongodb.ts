@@ -27,7 +27,7 @@ class WrappedUser extends Iridium.Instance<UserDocument, WrappedUser> {
 
 class IridiumDB extends Iridium.Core {
     constructor() {
-        super({ database: "test" });
+        super('mongodb://localhost:27017/test');
     }
 
     User = new Iridium.Model<UserDocument, User>(this, User);

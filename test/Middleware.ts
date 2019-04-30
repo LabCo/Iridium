@@ -2,9 +2,7 @@
 import * as chai from "chai";
 
 describe("Middleware",() => {
-    let core = new Iridium.Core({
-        database: "test"
-    });
+    let core = new Iridium.Core('mongodb://localhost:27017/test');
 
     describe("Express",() => {
         beforeEach(() => core.close());

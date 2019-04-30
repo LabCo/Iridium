@@ -14,7 +14,7 @@ class Test extends Iridium.Instance<any, Test> {
 describe("Plugins",() => {
     let core: Iridium.Core;
     beforeEach(async () => {
-        core = new Iridium.Core({ database: "test" });
+        core = new Iridium.Core('mongodb://localhost:27017/test');
         await core.connect();
     });
 

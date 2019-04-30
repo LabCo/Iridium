@@ -93,9 +93,7 @@ describe("Cache",() => {
     });
 
     describe("integration",() => {
-        let core = new Iridium.Core({
-            database: "test"
-        });
+        let core = new Iridium.Core( 'mongodb://localhost:27017/test' );
 
         let model = new Iridium.Model<Document, Instance>(core, Instance);
 

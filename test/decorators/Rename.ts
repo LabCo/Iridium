@@ -22,7 +22,7 @@ class Database extends Iridium.Core {
 }
 
 describe("decorators", () => {
-    let core = new Database({ database: "test" });
+    let core = new Database('mongodb://localhost:27017/test');
     before(() => core.connect());
     before(() => core.Houses.remove());
     afterEach(() => core.Houses.remove());

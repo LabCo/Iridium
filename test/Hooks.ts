@@ -45,7 +45,7 @@ class Test extends Iridium.Instance<TestDocument, Test> {
 describe("Hooks", function() {
     this.timeout(500);
 
-    let core = new Iridium.Core({ database: "test" });
+    let core = new Iridium.Core('mongodb://localhost:27017/test');
     let model = new Iridium.Model<TestDocument, Test>(core, Test);
 
     beforeEach(() => { shouldReject = 0 });
