@@ -760,10 +760,7 @@ export class Model<TDocument, TInstance> {
 
         if ((<fn>functions).map) {
             return new Promise<MapReducedDocument<Key, Value>[]>((resolve, reject) => {
-                if (options.out && options.out != "inline")
-                    return reject(new Error("Expected inline mapReduce output mode for this method signature"));
                 let opts = <MongoDB.MapReduceOptions>options;
-                opts.out = { inline: 1 };
                 this.collection.mapReduce((<fn>functions).map, (<fn>functions).reduce, opts, function (err, data) {
                     if (err) return reject(err);
                     return resolve(data);
@@ -773,14 +770,9 @@ export class Model<TDocument, TInstance> {
         else {
             let instanceType = <instance>functions;
             return new Promise<void>((resolve, reject) => {
-                if (options.out && options.out == "inline")
-                    return reject(new Error("Expected a non-inline mapReduce output mode for this method signature"));
                 if (!instanceType.mapReduceOptions)
                     return reject(new Error("Expected mapReduceOptions to be specified on the instance type"));
                 let opts = <MongoDB.MapReduceOptions>options;
-                let out : {[op: string]: string} = {};
-                out[(<string>options.out)] = instanceType.collection;
-                opts.out = out;
                 this.collection.mapReduce(instanceType.mapReduceOptions.map, instanceType.mapReduceOptions.reduce, opts, (err, data) => {
                     if (err) return reject(err);
                     return resolve();

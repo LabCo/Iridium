@@ -98,8 +98,8 @@ export class Cursor<TDocument extends { _id?: any }, TInstance> {
      * @return {Promise} A promise which is resolved with the next item
      */
     next(callback?: General.Callback<TInstance>): Promise<TInstance|undefined> {
-        return Nodeify(new Promise<TDocument|undefined>((resolve, reject) => {
-            this.cursor.next((err: Error, result: TDocument|undefined) => {
+        return Nodeify(new Promise<TDocument|null>((resolve, reject) => {
+            this.cursor.next((err: Error, result: TDocument|null) => {
                 if (err) return reject(err);
                 return resolve(result);
             });

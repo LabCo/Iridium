@@ -64,5 +64,5 @@ export interface MapReduceFunctions<TDocument, Key, Value> {
 }
 
 export interface MapReduceOptions extends MongoDB.MapReduceOptions {
-    out?: "inline" | "replace" | "merge" | "reduce"
+    // out?: "inline" | "replace" | "merge" | "reduce" | object
 }
